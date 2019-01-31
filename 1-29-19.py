@@ -1,12 +1,4 @@
-class Node:
-    def __init__(self, value, left=None, right=None, parent=None):
-        self.value = value
-        self.left = left
-        self.right = right
-        self.parent = parent
-
-    def __str__(self):
-        return "Node(value:" + str(self.value) + ")"
+from node import Node
 
 def pretty_print_tree(root):
     levels = [[(root, root.parent)]]

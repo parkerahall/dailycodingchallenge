@@ -1,8 +1,4 @@
-class Node:
-    def __init__(self, val, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
+from node import Node
 
 def node_equals(first, second):
     if first == None or second == None:
@@ -11,7 +7,7 @@ def node_equals(first, second):
         else:
             return False
 
-    val_eq = first.val == second.val
+    val_eq = first.value == second.value
     left_eq = node_equals(first.left, second.left)
     right_eq = node_equals(first.right, second.right)
     return val_eq and left_eq and right_eq
@@ -21,7 +17,7 @@ def serialize(root):
         return ""
     left_string = serialize(root.left)
     right_string = serialize(root.right)
-    return str(root.val) + "/" + str(len(left_string)) + "/" + left_string + right_string
+    return str(root.value) + "/" + str(len(left_string)) + "/" + left_string + right_string
 
 def deserialize(s):
     if len(s) == 0:
@@ -40,4 +36,4 @@ def deserialize(s):
 
 root = Node("root", Node("left", Node("left.left")), Node("right"))
 s = serialize(root)
-print(node_equals(root, deserialize(s)))
+assert node_equals(root, deserialize(s))
