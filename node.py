@@ -5,6 +5,12 @@ class Node:
         self.right = right
         self.parent = parent
 
+        if left != None:
+            left.parent = self
+
+        if right != None:
+            right.parent = self
+
     def __eq__(self, other):
         if not isinstance(other, Node):
             return False
