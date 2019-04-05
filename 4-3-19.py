@@ -1,6 +1,6 @@
 from node import Node
 
-def least_common_ancestor(root, left, right):
+def lowest_common_ancestor(root, left, right):
     left_ancestors = set()
     right_ancestors = set()
 
@@ -23,11 +23,11 @@ def least_common_ancestor(root, left, right):
 root = Node(1, left=Node(2), right=Node(3, left=Node(4), right=Node(5)))
 left = root.right.left
 right = root.right.right
-assert least_common_ancestor(root, left, right) == 3
-assert least_common_ancestor(root, right, left) == 3
+assert lowest_common_ancestor(root, left, right) == 3
+assert lowest_common_ancestor(root, right, left) == 3
 
 
 left = root
 right = root.left
-assert least_common_ancestor(root, left, right) == 1
-assert least_common_ancestor(root, right, left) == 1
+assert lowest_common_ancestor(root, left, right) == 1
+assert lowest_common_ancestor(root, right, left) == 1
