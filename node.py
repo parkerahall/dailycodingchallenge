@@ -11,6 +11,18 @@ class Node:
         if right != None:
             right.parent = self
 
+    def print_levels(self):
+        current = [self]
+        while len(current) > 0:
+            new = []
+            print(" ".join([str(elt.value) for elt in current]))
+            for elt in current:
+                if elt.left != None:
+                    new.append(elt.left)
+                if elt.right != None:
+                    new.append(elt.right)
+            current = new
+
     def __eq__(self, other):
         if not isinstance(other, Node):
             return False
@@ -19,16 +31,14 @@ class Node:
         
         same_left = True
         if self.left != None:
-            if other.left == None:
-                same_left = False
-            else:
-                same_left = self.left == other.left
+            same_left = self.left == other.left
+        else:
+            same_left = other.left == None
 
         same_right = True
         if self.right != None:
-            if other.right == None:
-                same_right = False
-            else:
-                same_right = self.right == other.right
+            same_right = self.right == other.right
+        else:
+            same_right = other.right == None
 
         return same_value and same_left and same_right
