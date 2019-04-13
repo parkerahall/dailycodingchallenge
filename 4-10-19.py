@@ -9,7 +9,7 @@ def check_answer(intervals, answer):
                 filled.add(i)
     return len(filled) == len(intervals)
 
-def minimum_interval_cover(intervals):
+def minimum_interval_cover_brute(intervals):
     if len(intervals) == 0:
         return set()
     
@@ -22,16 +22,31 @@ def minimum_interval_cover(intervals):
             curr = intervals[i]
             if not in_interval(curr, guess):
                 new_intervals.append(curr)
-        smaller_cover = minimum_interval_cover(new_intervals)
+        smaller_cover = minimum_interval_cover_brute(new_intervals)
         if len(smaller_cover) <= best_length:
             smaller_cover.add(guess)
             best_length = len(smaller_cover)
             best_cover = smaller_cover
     return best_cover
 
+def minimum_interval_cover(intervals):
+    if len(intervals) == 0:
+        return set()
+
+    end = min([end for (start, end) in intervals])
+    new_intervals = [interval for interval in intervals if not in_interval(interval, end)]
+    ans = minimum_interval_cover(new_intervals)
+    ans.add(end)
+    return ans
+
 intervals = [[0, 3], [2, 6], [3, 4], [6, 9]]
 answer = set([3, 6])
 assert check_answer(intervals, answer) == True
+
+intervals = [[0, 3], [2, 6], [3, 4], [6, 9]]
+answer = minimum_interval_cover_brute(intervals)
+assert check_answer(intervals, answer) == True
+assert len(answer) == 2
 
 intervals = [[0, 3], [2, 6], [3, 4], [6, 9]]
 answer = minimum_interval_cover(intervals)
