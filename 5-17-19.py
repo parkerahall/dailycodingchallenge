@@ -8,7 +8,7 @@ def smallest_square_sum(n):
     def sss_dp(m):
         if m not in cached:
             smallest = m - 1
-            for i in range(1, int(m ** .5) + 1):
+            for i in range(2, int(m ** .5) + 1):
                 smallest = min(smallest, sss_dp(m - i ** 2))
             cached[m] = smallest + 1
         return cached[m]
