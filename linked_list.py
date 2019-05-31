@@ -25,7 +25,7 @@ class SinglyLinkedList:
         return str(l)
 
     def __repr__(self):
-        return srt(self)
+        return str(self)
 
 class DoublyLinkedList:
     def __init__(self, value, prev=None, nxt=None):
