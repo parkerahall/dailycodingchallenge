@@ -3,6 +3,14 @@ class SinglyLinkedList:
         self.value = value
         self.next = nxt
 
+    @classmethod
+    def from_list(cls, lst):
+        tail = SinglyLinkedList(lst[-1])
+        for i in range(len(lst) - 2, -1, -1):
+            new = SinglyLinkedList(lst[i], tail)
+            tail = new
+        return tail
+
     def copy(self):
         nxt = self.next.copy() if self.next != None else None
         return SLL(self.value, nxt=nxt)
